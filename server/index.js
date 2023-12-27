@@ -2,7 +2,10 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const cookieParser = require('cookie-parser');
+
 dotenv.config();
+const app = express();
 
 //app connect
 mongoose
@@ -10,7 +13,10 @@ mongoose
    .then(() => console.log('Connected to MongoDB'))
    .catch((err) => console.log(err, 'Connect to MongoDB failed'));
 
-const app = express();
+//midleware
+app.use(express.json());
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: false }));
 
 app.use('/', require('./routes/authRoutes'));
 
