@@ -33,7 +33,7 @@ function Login() {
           password: ''
         })
         toast.success("You're logged in successfully")
-        navigate('/')
+        navigate('/profile')
       }
     } catch (error) {
       console.log(error)

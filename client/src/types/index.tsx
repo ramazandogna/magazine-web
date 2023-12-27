@@ -8,3 +8,9 @@ export type userLogin = {
   email: string
   password: string
 }
+
+// export type getUser = {
+//   id: string
+//   name: string
+//   email: string
+// }
