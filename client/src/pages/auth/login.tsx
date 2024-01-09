@@ -1,29 +1,27 @@
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 import axios from 'axios'
 //types
-import type { userRegister } from '../types'
+import type { userLogin } from '../../types'
 //toast
 import { toast } from 'react-hot-toast'
 
-function Register() {
+function Login() {
   //states
-  const [data, setData] = useState<userRegister>({
-    name: '',
+  const [data, setData] = useState<userLogin>({
     email: '',
     password: ''
   })
 
+  //nav
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const navigate = useNavigate()
-
   //fonk
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const { name, email, password } = data
+    const { email, password } = data
     try {
-      const { data } = await axios.post('/register', {
-        name,
+      const { data } = await axios.post('/login', {
         email,
         password
       })
@@ -32,11 +30,10 @@ function Register() {
       } else {
         setData({
           email: '',
-          name: '',
           password: ''
         })
-        toast.success("You're registered successfully")
-        navigate('/login')
+        toast.success("You're logged in successfully")
+        navigate('/profile')
       }
     } catch (error) {
       console.log(error)
@@ -45,15 +42,8 @@ function Register() {
 
   return (
     <div className="h-100vh w-100vw flex flex-col items-center justify-center">
-      <h1>Register</h1>
+      <h1 className="text-31px">Login</h1>
       <form className="flex flex-col" onSubmit={handleSubmit}>
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          id="name"
-          value={data.name}
-          onChange={e => setData({ ...data, name: e.target.value })}
-        />
         <label htmlFor="email">Email</label>
         <input
           type="email"
@@ -68,10 +58,10 @@ function Register() {
           value={data.password}
           onChange={e => setData({ ...data, password: e.target.value })}
         />
-        <button type="submit">Register</button>
+        <button type="submit">Login</button>
       </form>
     </div>
   )
 }
 
-export default Register
+export default Login

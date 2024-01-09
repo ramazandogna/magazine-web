@@ -8,6 +8,11 @@ const userSchema = new Schema({
       unique: true,
    },
    password: String,
+   activateKey: String,
+   admin: {
+      type: Boolean,
+      default: false,
+   },
 });
 
 const UserModel = mongoose.model('User', userSchema);

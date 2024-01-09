@@ -10,7 +10,7 @@ const test = (req, res) => {
 //register endpoint
 const registerUser = async (req, res) => {
    try {
-      const { name, username, email, password } = req.body;
+      const { name, username, email, password, activateKey, admin } = req.body;
       //name was entered
       if (!name) {
          return res.json({
@@ -39,6 +39,8 @@ const registerUser = async (req, res) => {
          email,
          password: hashedPassword,
          username,
+         activateKey,
+         admin,
       });
 
       return res.json({
@@ -67,7 +69,13 @@ const loginUser = async (req, res) => {
       const match = await comparePassword(password, user.password);
       if (match) {
          jwt.sign(
-            { email: user.email, id: user._id, name: user.name },
+            {
+               email: user.email,
+               id: user._id,
+               name: user.name,
+               activateKey: user.activateKey,
+               admin: user.Admin,
+            },
             process.env.JWT_SECRET,
             {},
             (err, token) => {
@@ -86,8 +94,29 @@ const loginUser = async (req, res) => {
    }
 };
 
+//get profile andpoint
+const getProfile = (req, res) => {
+   const { token } = req.cookies;
+   if (token) {
+      jwt.verify(token, process.env.JWT_SECRET, {}, (err, user) => {
+         if (err) throw err;
+         res.json(user);
+      });
+   } else {
+      res.json(null);
+   }
+};
+
+//logout
+
+const logoutUser = (req, res) => {
+   res.clearCookie('token').json({ message: 'logout success' });
+};
+
 module.exports = {
    test,
    registerUser,
    loginUser,
+   getProfile,
+   logoutUser,
 };
