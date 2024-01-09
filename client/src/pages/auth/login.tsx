@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
 //types
-import type { userLogin } from '../types'
+import type { userLogin } from '../../types'
 //toast
 import { toast } from 'react-hot-toast'
 

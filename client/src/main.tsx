@@ -4,7 +4,8 @@ import App from './routes'
 import 'virtual:uno.css' //import
 import '@unocss/reset/normalize.css' //reset settings
 import { BrowserRouter } from 'react-router-dom'
-//context
+//loading
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
     <App />
