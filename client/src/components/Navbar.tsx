@@ -10,7 +10,7 @@ function Navbar() {
 
   const handleLogout = async () => {
     try {
-      await axios.get('/logout')
+      await axios.get('/auth/logout')
       setUser(null)
       setHaveUser(false)
     } catch (error) {
