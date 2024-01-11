@@ -17,6 +17,7 @@ router.use(
    })
 );
 
+//user routes
 router.get('/', test);
 router.post('/register', registerUser);
 router.post('/login', loginUser);

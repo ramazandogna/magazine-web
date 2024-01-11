@@ -14,11 +14,12 @@ mongoose
    .catch((err) => console.log(err, 'Connect to MongoDB failed'));
 
 //midleware
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(cookieParser());
-app.use(express.urlencoded({ extended: false }));
 
-app.use('/', require('./routes/authRoutes'));
+app.use('/auth', require('./routes/authRoutes'));
+app.use('/data', require('./routes/dataRoutes'));
 
 const port = process.env.PORT;
 app.listen(port, () => console.log(`Server is running on port ${port}`));
