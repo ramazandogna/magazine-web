@@ -1,5 +1,12 @@
+import SubmitStyles from '../components/submitStyles'
+
 function Home() {
-  return <div>Home</div>
+  return (
+    <div>
+      <h2>This is home</h2>
+      <SubmitStyles />
+    </div>
+  )
 }
 
 export default Home
