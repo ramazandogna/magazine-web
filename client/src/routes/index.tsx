@@ -2,7 +2,7 @@
 import { Routes, Route } from 'react-router-dom'
 import axios from 'axios'
 //components
-import Navbar from '../components/Navbar'
+import Navbar from '../components/navbar'
 //toast
 import { Toaster } from 'react-hot-toast'
 //context

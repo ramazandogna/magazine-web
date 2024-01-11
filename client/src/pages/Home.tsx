@@ -1,4 +1,4 @@
-import SubmitStyles from '../components/submitStyles'
+import SubmitStyles from '../components/submitElements'
 
 function Home() {
   return (
