@@ -24,7 +24,7 @@ function Register() {
     e.preventDefault()
     const { name, email, password, activateKey } = data // Add 'activateKey' here
     try {
-      const { data } = await axios.post('/register', {
+      const { data } = await axios.post('/auth/register', {
         name,
         email,
         password,

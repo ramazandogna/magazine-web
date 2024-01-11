@@ -22,6 +22,17 @@ export type userTypes = {
   admin: boolean
 }
 
+//send Data
+export type sendData = {
+  image: {
+    file: File | null
+    base64Image: string
+    name: string
+  } | null
+  html: string
+  css: string
+}
+
 export interface UserContextProps {
   user: userTypes | null
   setUser: React.Dispatch<React.SetStateAction<userTypes | null>>
