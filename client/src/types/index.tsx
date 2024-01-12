@@ -31,9 +31,37 @@ export type sendData = {
   } | null
   html: string
   css: string
+  user: {
+    name: string | undefined
+    email: string | undefined
+    id: number | undefined
+  }
 }
 
+export type userDataProps = {
+  name: string
+  email: string
+  id: number
+}
+
+export type imageDataProps = {
+  file: File | null
+  base64Image: string
+  name: string
+}
+
+//context props
+//getUser
 export interface UserContextProps {
   user: userTypes | null
   setUser: React.Dispatch<React.SetStateAction<userTypes | null>>
+}
+
+//getContent
+export interface GetContentProps {
+  HTML: string
+  CSS: string
+  image: string
+  author?: string
+  contentTime?: Date
 }
