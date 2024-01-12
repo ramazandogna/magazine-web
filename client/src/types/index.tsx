@@ -56,12 +56,16 @@ export interface UserContextProps {
   user: userTypes | null
   setUser: React.Dispatch<React.SetStateAction<userTypes | null>>
 }
-
-//getContent
-export interface GetContentProps {
-  HTML: string
-  CSS: string
-  image: string
-  author?: string
-  contentTime?: Date
+export interface ContentContextProps {
+  contents: sendData | null
+  setContents: React.Dispatch<React.SetStateAction<sendData | null>>
 }
+
+// // getContent
+// export interface GetContentProps {
+//   HTML: string
+//   CSS: string
+//   image: string
+//   author?: string
+//   contentTime?: Date
+// }

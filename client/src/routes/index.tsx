@@ -7,6 +7,7 @@ import Navbar from '../components/navbar'
 import { Toaster } from 'react-hot-toast'
 //context
 import { UserContextProvider } from '../context/userContext'
+import { ContentContextProvider } from '../context/contentContext'
 //pages
 import Home from '../pages/home'
 import Login from '../pages/auth/login'
@@ -21,16 +22,18 @@ axios.defaults.withCredentials = true
 const AppRoutes = () => {
   return (
     <UserContextProvider>
-      <Toaster position="bottom-right" toastOptions={{ duration: 2000 }} />
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
+      <ContentContextProvider>
+        <Toaster position="bottom-right" toastOptions={{ duration: 2000 }} />
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      </ContentContextProvider>
     </UserContextProvider>
   )
 }

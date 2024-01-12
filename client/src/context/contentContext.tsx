@@ -1,16 +1,21 @@
-// import { createContext, useState, useEffect } from 'react'
-// import axios from 'axios'
-// import {  UserContextProps, GetContentProps } from '../types'
+import { createContext, useState, useEffect } from 'react'
+import axios from 'axios'
+import { ContentContextProps, sendData } from '../types'
 
-// export const UserContext = createContext<UserContextProps>({ user: null, setUser: () => null })
-// export function UserContextProvider({ children }: { children: React.ReactNode }) {
-//   const [content, setContent] = useState<GetContentProps | null>(null)
-//   useEffect(() => {
-//     if (!content) {
-//       axios.get('/data/profile').then(({ data }) => {
-//         setUser(data)
-//       })
-//     }
-//   })
-//   return <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>
-// }
+export const ContentContext = createContext<ContentContextProps>({
+  contents: null,
+  setContents: () => null
+})
+export function ContentContextProvider({ children }: { children: React.ReactNode }) {
+  const [contents, setContents] = useState<sendData | null>(null)
+  useEffect(() => {
+    if (!contents) {
+      axios.get('/data/getContents').then(({ data }) => {
+        setContents(data)
+      })
+    }
+  })
+  return (
+    <ContentContext.Provider value={{ contents, setContents }}>{children}</ContentContext.Provider>
+  )
+}

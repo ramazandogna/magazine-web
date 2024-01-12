@@ -52,12 +52,14 @@ function SubmitElements() {
           toast.error(data.error)
         } else {
           // Reset form data after successful submission
-          setData({
+          setData(prevData => ({
+            ...prevData,
             html: '',
             css: '',
             image: null,
-            user: data.user
-          })
+            user: data.user,
+            map: () => null
+          }))
 
           toast.success("You're sent successfully")
         }
@@ -118,8 +120,6 @@ function SubmitElements() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
-
-  console.log(data)
 
   return (
     <div

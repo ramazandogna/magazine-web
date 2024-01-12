@@ -13,6 +13,6 @@ router.use(
 );
 
 router.post('/submitelement', submitElementData);
-router.get('/getContents', getElementsData);
+router.get('/getcontents', getElementsData);
 
 module.exports = router;

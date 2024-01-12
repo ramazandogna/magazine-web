@@ -22,7 +22,15 @@ const submitElementData = async (req, res) => {
 
 //getElementsData endpoint
 
-const getElementsData = (req, res) => {};
+const getElementsData = async (req, res) => {
+   try {
+      const elementData = await ElementData.find();
+      res.json(elementData);
+   } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: 'internal server error' });
+   }
+};
 
 module.exports = {
    submitElementData,
