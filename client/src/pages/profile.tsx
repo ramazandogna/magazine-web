@@ -11,20 +11,19 @@ function Profile() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    // Eğer user null değilse ve user.admin true ise /admin sayfasına yönlendir
-    if (user && user.admin) {
-      navigate('/admin')
-    }
-  }, [user, navigate])
-
-  useEffect(() => {
     // Eğer user mevcut değilse, profil bilgilerini al
     if (!user) {
-      axios.get('/profile').then(({ data }) => {
+      axios.get('auth/profile').then(({ data }) => {
         setUser(data)
       })
     }
   }, [user, setUser])
+
+  useEffect(() => {
+    if (user && user.admin) {
+      navigate('/admin')
+    }
+  }, [user, navigate])
 
   return (
     <div>

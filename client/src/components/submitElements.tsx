@@ -1,5 +1,5 @@
 import { ChangeEvent, ChangeEventHandler, useContext, useEffect, useState } from 'react'
-import { sendData } from '../types'
+import { imageDataProps, sendData } from '../types'
 import axios from 'axios'
 import { toast } from 'react-hot-toast'
 import { UserContext } from '../context/userContext'
@@ -7,10 +7,20 @@ import { UserContext } from '../context/userContext'
 function SubmitElements() {
   const { user } = useContext(UserContext)
   const [isUser, setIsUser] = useState(false)
+  const [imageData, setImageData] = useState<imageDataProps>({
+    file: null,
+    base64Image: '',
+    name: ''
+  })
   const [data, setData] = useState<sendData>({
     image: null,
     html: '',
-    css: ''
+    css: '',
+    user: {
+      name: user?.name,
+      email: user?.email,
+      id: user?.id
+    }
   })
 
   // resim yükleme
@@ -23,37 +33,41 @@ function SubmitElements() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const { html, css, image } = data
-    const imageData = image
-      ? new Uint8Array(await convertBase64ToByteArray(image.base64Image))
-      : null
+    const { html, css, user } = data
+
     try {
-      const { data } = await axios.post('/data/submitelement', {
-        userId: user?.id,
-        html,
-        css,
-        image: imageData
-      })
-      if (data.error) {
-        toast.error(data.error)
-      } else {
-        setData({
-          html: '',
-          css: '',
-          image: null
+      if (user) {
+        const { data } = await axios.post('/data/submitelement', {
+          html,
+          css,
+          image: imageData,
+          user: {
+            id: user.id,
+            email: user.email,
+            name: user.name
+          }
         })
-        toast.success("You're sended successfully")
+
+        if (data.error) {
+          toast.error(data.error)
+        } else {
+          // Reset form data after successful submission
+          setData(prevData => ({
+            ...prevData,
+            html: '',
+            css: '',
+            image: null,
+            user: data.user,
+            map: () => null
+          }))
+
+          toast.success("You're sent successfully")
+        }
       }
     } catch (error) {
       console.log(error)
-      toast.error
+      toast.error('An error occurred while submitting')
     }
-  }
-
-  const convertBase64ToByteArray = async (base64String: string): Promise<Uint8Array> => {
-    const response = await fetch(base64String)
-    const blob = await response.blob()
-    return new Uint8Array(await new Response(blob).arrayBuffer())
   }
 
   const handleImageSend: ChangeEventHandler<HTMLInputElement> = (
@@ -63,21 +77,27 @@ function SubmitElements() {
     if (file && file.length > 0) {
       const selectedFile = file[0]
       const fileName = file[0].name
+
       if (isImageFileValid(selectedFile)) {
         const reader = new FileReader()
+
         reader.onloadend = () => {
-          // reader.result, dosyanın base64 verisidir
           const base64Image = reader.result as string
 
-          // Base64 verisini kullanarak önizlemeyi göster
+          setImageData({
+            file: selectedFile,
+            base64Image,
+            name: fileName
+          })
           setData(prevData => ({
             ...prevData,
             image: { file: selectedFile, base64Image, name: fileName }
           }))
         }
+
         reader.readAsDataURL(selectedFile)
       } else {
-        alert('Please select a valid(JPG, JPEG, PNG) image file')
+        alert('Please select a valid (JPG, JPEG, PNG) image file')
         setData(prevData => ({ ...prevData, image: null }))
         e.target.value = ''
       }
@@ -87,9 +107,18 @@ function SubmitElements() {
   useEffect(() => {
     if (user) {
       setIsUser(true)
+      setData({
+        ...data,
+        user: {
+          name: user.name,
+          email: user.email,
+          id: user.id
+        }
+      })
     } else {
       setIsUser(false)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
 
   return (
@@ -104,6 +133,7 @@ function SubmitElements() {
         <label className="block mb-2 text-gray-800">Resim Seç</label>
         <input
           disabled={!isUser}
+          accept="image/"
           type="file"
           onChange={handleImageSend}
           className="w-full border p-2 rounded"
