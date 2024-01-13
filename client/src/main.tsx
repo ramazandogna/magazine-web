@@ -1,13 +1,17 @@
 import ReactDOM from 'react-dom/client'
 import App from './routes'
-//unocdd
+//unocss
 import 'virtual:uno.css' //import
-import '@unocss/reset/normalize.css' //reset settings
+import '@unocss/reset/eric-meyer.css'
+//router
 import { BrowserRouter } from 'react-router-dom'
-//loading
+//styles
+import './assets/style.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
-    <App />
+    <div className="text-text bg-bkg  text-14px fixed inset-0 font-[lato]">
+      <App />
+    </div>
   </BrowserRouter>
 )
