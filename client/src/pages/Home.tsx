@@ -1,4 +1,4 @@
-import ElementsPage from '../components/elementsPage'
+import ElementsPage from './elementsPage'
 import SubmitStyles from '../components/submitElements'
 
 function Home() {

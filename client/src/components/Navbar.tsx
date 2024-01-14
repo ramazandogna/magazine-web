@@ -29,18 +29,18 @@ function Navbar() {
 
   if (haveUser) {
     return (
-      <nav className="flex p-4 items-center justifyq-center gap-8px ">
+      <nav className="gap-8px bg-secondary flex w-full items-center justify-center p-4">
         <Link to="/">Home</Link>
         <Link to="/profile">Profile</Link>
         <Link to="/admin">Admin</Link>
-        <div className="cursor-pointer underline text-red-400" onClick={handleLogout}>
+        <div className="cursor-pointer text-red-400 underline" onClick={handleLogout}>
           Logout
         </div>
       </nav>
     )
   }
   return (
-    <nav className="flex p-4 items-center justifyq-center gap-8px ">
+    <nav className="gap-8px bg-secondary flex items-center justify-center p-4 ">
       <Link to="/">Home</Link>
       <Link to="/login">Login</Link>
       <Link to="/register">Register</Link>

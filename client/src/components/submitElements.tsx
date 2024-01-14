@@ -13,13 +13,15 @@ function SubmitElements() {
     name: ''
   })
   const [data, setData] = useState<sendData>({
+    _id: null,
+    map: () => null,
     image: null,
     html: '',
     css: '',
     user: {
-      name: user?.name,
-      email: user?.email,
-      id: user?.id
+      name: '',
+      email: '',
+      id: 0
     }
   })
 
@@ -125,41 +127,43 @@ function SubmitElements() {
     <div
       className={
         isUser
-          ? 'fixed bottom-0 left-1/2 -translate-x-50%'
-          : 'fixed bottom-0 left-1/2 -translate-x-50% cursor-not-allowed'
+          ? '-translate-x-50% fixed bottom-0 left-1/2'
+          : '-translate-x-50% fixed bottom-0 left-1/2 cursor-not-allowed'
       }
     >
-      <form onSubmit={handleSubmit} className="bg-white p-8 rounded shadow-md">
-        <label className="block mb-2 text-gray-800">Resim Seç</label>
+      <form onSubmit={handleSubmit} className="rounded bg-white p-8 shadow-md">
+        <label className="mb-2 block text-gray-800">Resim Seç</label>
         <input
           disabled={!isUser}
           accept="image/"
           type="file"
           onChange={handleImageSend}
-          className="w-full border p-2 rounded"
+          className="w-full rounded border p-2"
         />
 
-        <label className="block mb-2 text-gray-800">Metin 1</label>
+        <label className="mb-2 block text-gray-800">Metin 1</label>
         <input
           disabled={!isUser}
           type="text"
           value={data.html}
           onChange={e => setData({ ...data, html: e.target.value })}
-          className="w-full border p-2 rounded"
+          className="w-full rounded border p-2"
         />
 
-        <label className="block mb-2 text-gray-800">Metin 2</label>
+        <label className="mb-2 block text-gray-800">Metin 2</label>
         <input
           disabled={!isUser}
           type="text"
           value={data.css}
           onChange={e => setData({ ...data, css: e.target.value })}
-          className="w-full border p-2 rounded"
+          className="w-full rounded border p-2"
         />
         <button className={isUser ? '' : 'cursor-not-allowed'} disabled={!isUser}>
           Gönder
         </button>
-        {!isUser && <p className="text-red-500">Bu özelliği kullanmak için giriş yapmalısınız.</p>}
+        {!isUser && (
+          <p className="text-red-500">Bu özelliği kullanmak için giriş yapmalısınız.</p>
+        )}
       </form>
     </div>
   )
