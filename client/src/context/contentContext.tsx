@@ -7,7 +7,7 @@ export const ContentContext = createContext<ContentContextProps>({
   setContents: () => null
 })
 export function ContentContextProvider({ children }: { children: React.ReactNode }) {
-  const [contents, setContents] = useState<sendData | null>(null)
+  const [contents, setContents] = useState<sendData[] | null>(null)
   useEffect(() => {
     if (!contents) {
       axios.get('/data/getContents').then(({ data }) => {
@@ -16,6 +16,8 @@ export function ContentContextProvider({ children }: { children: React.ReactNode
     }
   })
   return (
-    <ContentContext.Provider value={{ contents, setContents }}>{children}</ContentContext.Provider>
+    <ContentContext.Provider value={{ contents, setContents }}>
+      {children}
+    </ContentContext.Provider>
   )
 }

@@ -41,25 +41,31 @@ function Login() {
   }
 
   return (
-    <div className="h-100vh w-100vw flex flex-col items-center justify-center">
-      <h1 className="text-31px">Login</h1>
-      <form className="flex flex-col" onSubmit={handleSubmit}>
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          value={data.email}
-          onChange={e => setData({ ...data, email: e.target.value })}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          value={data.password}
-          onChange={e => setData({ ...data, password: e.target.value })}
-        />
-        <button type="submit">Login</button>
-      </form>
+    <div className="flex h-screen w-screen flex-col items-center justify-center">
+      <h2 className="h2title">Sign in to app</h2>
+      <div className=" w-300px">
+        <form className="gap-8px flex flex-col" onSubmit={handleSubmit}>
+          <label htmlFor="email">Email</label>
+          <input
+            className=" mt-4px mb-16px"
+            type="email"
+            id="email"
+            value={data.email}
+            onChange={e => setData({ ...data, email: e.target.value })}
+          />
+          <label htmlFor="password">Password</label>
+          <input
+            className="  mt-4px mb-16px"
+            type="password"
+            id="password"
+            value={data.password}
+            onChange={e => setData({ ...data, password: e.target.value })}
+          />
+          <button className="" type="submit">
+            Sign in
+          </button>
+        </form>
+      </div>
     </div>
   )
 }

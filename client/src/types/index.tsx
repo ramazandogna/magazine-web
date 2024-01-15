@@ -24,6 +24,10 @@ export type userTypes = {
 
 //send Data
 export type sendData = {
+  _id: number | null | string
+  map(
+    arg0: (content: sendData, i: number) => import('react/jsx-runtime').JSX.Element
+  ): import('react').ReactNode
   image: {
     file: File | null
     base64Image: string
@@ -57,8 +61,8 @@ export interface UserContextProps {
   setUser: React.Dispatch<React.SetStateAction<userTypes | null>>
 }
 export interface ContentContextProps {
-  contents: sendData | null
-  setContents: React.Dispatch<React.SetStateAction<sendData | null>>
+  contents: sendData[] | null
+  setContents: React.Dispatch<React.SetStateAction<sendData[] | null>>
 }
 
 // // getContent

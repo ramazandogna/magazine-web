@@ -25,17 +25,24 @@ function Profile() {
     }
   }, [user, navigate])
 
+  console.log(user)
   return (
-    <div>
+    <div className="globalSection ">
       {user ? (
-        <div>
+        <div className="globalGap flex flex-col">
           <h1>Hi, welcome to dashboard</h1>
-          <p>Your infos:</p>
-          <ul>
+          <p className="text-22px my-12px underline">Your infos:</p>
+          <ul className="globalGap flex flex-col">
             <li>id: {user.id}</li>
             <li>email: {user.email}</li>
             <li>name: {user.name}</li>
-            <li>activateKey: {user.activateKey}</li>
+            <li>
+              activateKey:{' '}
+              {user.activateKey
+                ? `${user.activateKey}`
+                : 'Aktif bir aktivasyon kodunuz yok'}
+            </li>
+            <li>isAdmin: {user.admin ? 'Admin' : 'Kullanıcı'}</li>
           </ul>
         </div>
       ) : (

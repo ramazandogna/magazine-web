@@ -70,11 +70,11 @@ const loginUser = async (req, res) => {
       if (match) {
          jwt.sign(
             {
-               email: user.email,
                id: user._id,
                name: user.name,
+               email: user.email,
                activateKey: user.activateKey,
-               admin: user.Admin,
+               admin: user.admin,
             },
             process.env.JWT_SECRET,
             {},

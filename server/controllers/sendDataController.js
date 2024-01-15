@@ -32,7 +32,43 @@ const getElementsData = async (req, res) => {
    }
 };
 
+const deleteElementsData = async () => {
+   try {
+      const { contentId } = req.params;
+
+      await ElementData.findByIdAndDelete(contentId);
+
+      res.json({
+         message: 'Elements deleted successfully',
+      });
+   } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: 'internal server error' });
+   }
+};
+
+const updateElementData = async (req, res) => {
+   try {
+      const { contentId } = req.params;
+      const { html, css } = req.body;
+      const updateData = await ElementData.findByIdAndUpdate(
+         contentId,
+         { html: html, css: css },
+         { new: true }
+      );
+      res.json({
+         message: 'update was successfully',
+         updateData: updateData,
+      });
+   } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: 'internal server error' });
+   }
+};
+
 module.exports = {
    submitElementData,
    getElementsData,
+   deleteElementsData,
+   updateElementData,
 };
