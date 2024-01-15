@@ -117,7 +117,7 @@ function ElementDetails() {
           ) : (
             <button onClick={handleEdit}>Düzenle</button>
           )}
-          <DeleteButton />
+          <button className="">Delete</button>
         </div>
       )}
     </div>

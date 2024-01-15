@@ -30,20 +30,20 @@ const ElementsPage = () => {
       </div>
     )
   return (
-    <div className="globalSection gap-12px flex">
+    <div className="globalSection gap-12px flex flex-wrap">
       {contents &&
         user &&
         contents.map((content: sendData, i: number) => (
           <div
-            className="globalpadding globalrounded text-bkg bg-secondary relative"
+            className="globalPadding globalRounded w-100% text-bkg bg-secondary"
             key={i}
           >
-            <Link to={`/content/${content._id}`}>
+            <Link className="" to={`/content/${content._id}`}>
               <p className="top-10px right-10px absolute"> {i + 1}</p>
               <img
                 src={content.image?.base64Image}
                 alt={content?.image?.file?.name}
-                className="max-w-250px mt-18px globalrounded h-auto transition-all hover:scale-125"
+                className="w-250px mt-18px globalrounded h-auto transition-all hover:scale-125"
               />
             </Link>
           </div>

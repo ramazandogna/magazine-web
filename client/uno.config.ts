@@ -17,10 +17,10 @@ export default defineConfig({
       headerHeight: 'h-3rem',
       globalNav:
         'z-9999 w-100vw headerHeight py-0.25rem bg-secondary/40 fixed left-0 top-0  flex items-center shadow-xl',
-      globalSection: 'pt-[4.5rem] globalWidth',
+      globalSection: 'mt-[4.5rem] globalWidth box-border',
+      globalWidth: '2xl:w-1380px xl:w-1200px lg:w-960px w-100% relative m-auto px-1rem',
       globalPadding: 'p-12px',
       globalRounded: 'rounded-8px',
-      globalWidth: '2xl:w-1380px xl:w-1200px lg:w-960px w-100% relative m-auto px-1rem',
       globalGap: 'gap-16px'
     }
   ],

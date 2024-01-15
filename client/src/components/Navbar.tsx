@@ -27,14 +27,14 @@ function Navbar() {
     }
   }, [user])
 
-  if (haveUser) {
-    return (
-      <nav className="globalNav">
-        <div className="globalWidth mx-auto flex">
-          <Link className="text-22px font-bold" to="/">
-            Home
-          </Link>
-          <div className="globalGap ml-auto flex items-center">
+  return (
+    <nav className="globalNav ">
+      <div className="globalWidth flex">
+        <Link className="text-22px font-bold" to="/">
+          Home
+        </Link>
+        {haveUser ? (
+          <div className="globalGap ml-auto hidden items-center sm:flex">
             <Link className="" to="/elements">
               Elements
             </Link>
@@ -51,27 +51,22 @@ function Navbar() {
               Logout
             </div>
           </div>
-        </div>
-      </nav>
-    )
-  }
-  return (
-    <nav className="globalNav ">
-      <div className="globalWidth mx-auto flex">
-        <Link className="text-22px font-bold" to="/">
-          Home
-        </Link>
-        <div className="globalGap ml-auto flex items-center">
-          <Link className="underline-primary transition-all hover:underline" to="/login">
-            Login
-          </Link>
-          <Link
-            className="underline-primary transition-all hover:underline"
-            to="/register"
-          >
-            Register
-          </Link>
-        </div>
+        ) : (
+          <div className="globalGap ml-auto hidden items-center sm:flex">
+            <Link
+              className="underline-primary transition-all hover:underline"
+              to="/login"
+            >
+              Login
+            </Link>
+            <Link
+              className="underline-primary transition-all hover:underline"
+              to="/register"
+            >
+              Register
+            </Link>
+          </div>
+        )}
       </div>
     </nav>
   )

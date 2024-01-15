@@ -1,5 +1,6 @@
 function DeleteButton() {
-  return <button>Delete</button>
+  const handleDelete = () => {}
+  return <button onClick={handleDelete}>Delete</button>
 }
 
 export default DeleteButton

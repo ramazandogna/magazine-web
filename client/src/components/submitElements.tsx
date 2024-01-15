@@ -138,7 +138,7 @@ function SubmitElements() {
           accept="image/"
           type="file"
           onChange={handleImageSend}
-          className="w-full rounded border p-2"
+          className="w-full rounded p-2"
         />
 
         <label className="mb-2 block text-gray-800">Metin 1</label>

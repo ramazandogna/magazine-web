@@ -32,7 +32,6 @@ input[type='search']::-webkit-search-decoration {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  border: none;
   background: none;
   font-family: inherit;
   font-size: inherit;
