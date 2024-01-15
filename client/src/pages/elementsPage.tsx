@@ -23,26 +23,28 @@ const ElementsPage = () => {
   }, [contents, setContents])
 
   console.log(contents)
-  if (!contents) return <div>Loading...</div>
+  if (!contents)
+    return (
+      <div className="fixedCenter text-16px flex items-center justify-center">
+        Loading...
+      </div>
+    )
   return (
-    <div className="gap-4px flex">
+    <div className="globalSection gap-12px flex">
       {contents &&
         user &&
         contents.map((content: sendData, i: number) => (
-          <div key={i}>
+          <div
+            className="globalpadding globalrounded text-bkg bg-secondary relative"
+            key={i}
+          >
             <Link to={`/content/${content._id}`}>
-              <h2>Content count {i + 1}</h2>
-              <p>HTML: {content.html}</p>
-              <p>CSS: {content.css}</p>
-              {/* <p>Image: {content.image}</p> */}
+              <p className="top-10px right-10px absolute"> {i + 1}</p>
               <img
                 src={content.image?.base64Image}
                 alt={content?.image?.file?.name}
-                className="max-w-250px h-auto"
+                className="max-w-250px mt-18px globalrounded h-auto transition-all hover:scale-125"
               />
-              <p>User: {content.user.name}</p>
-              <p>User: {content.user.email}</p>
-              <p>User: {content.user.id}</p>
             </Link>
           </div>
         ))}

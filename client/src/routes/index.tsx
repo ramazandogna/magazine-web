@@ -16,6 +16,8 @@ import Profile from '../pages/profile'
 import Admin from '../pages/adminPanel'
 import PageNotFound from '../pages/*'
 import ElementDetails from '../pages/elementDetail'
+import ElementsPage from '../pages/elementsPage'
+import SendElementPage from '../pages/sendElementPage'
 
 axios.defaults.baseURL = 'http://localhost:8000'
 axios.defaults.withCredentials = true
@@ -31,6 +33,8 @@ const AppRoutes = () => {
           <Route path="/content/:contentId" element={<ElementDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/elements" element={<ElementsPage />} />
+          <Route path="/sendelement" element={<SendElementPage />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<PageNotFound />} />

@@ -2,7 +2,12 @@ const express = require('express');
 const router = express.Router();
 const cors = require('cors');
 
-const { submitElementData, getElementsData } = require('../controllers/sendDataController');
+const {
+   submitElementData,
+   getElementsData,
+   deleteElementsData,
+   updateElementData,
+} = require('../controllers/sendDataController');
 
 //middleware
 router.use(
@@ -14,5 +19,7 @@ router.use(
 
 router.post('/submitelement', submitElementData);
 router.get('/getcontents', getElementsData);
+router.put('/updateelement/:contentId', updateElementData);
+router.delete('/deleteelement/:contentId', deleteElementsData);
 
 module.exports = router;

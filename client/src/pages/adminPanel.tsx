@@ -6,7 +6,7 @@ const Admin = () => {
   const { user } = useContext(UserContext)
 
   if (!user || !user.admin) {
-    return <div>Admin sayfasına erişim yetkiniz yok</div>
+    return <div className="globalSection">Admin sayfasına erişim yetkiniz yok</div>
   }
 }
 

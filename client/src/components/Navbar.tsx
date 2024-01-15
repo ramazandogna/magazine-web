@@ -29,21 +29,50 @@ function Navbar() {
 
   if (haveUser) {
     return (
-      <nav className="gap-8px bg-secondary flex w-full items-center justify-center p-4">
-        <Link to="/">Home</Link>
-        <Link to="/profile">Profile</Link>
-        <Link to="/admin">Admin</Link>
-        <div className="cursor-pointer text-red-400 underline" onClick={handleLogout}>
-          Logout
+      <nav className="globalNav">
+        <div className="globalWidth mx-auto flex">
+          <Link className="text-22px font-bold" to="/">
+            Home
+          </Link>
+          <div className="globalGap ml-auto flex items-center">
+            <Link className="" to="/elements">
+              Elements
+            </Link>
+            <Link className="" to="/sendelement">
+              Catch Your Element
+            </Link>
+            <Link className="" to="/profile">
+              Profile
+            </Link>
+            <Link className="" to="/admin">
+              Admin
+            </Link>
+            <div className="text-primary cursor-pointer underline" onClick={handleLogout}>
+              Logout
+            </div>
+          </div>
         </div>
       </nav>
     )
   }
   return (
-    <nav className="gap-8px bg-secondary flex items-center justify-center p-4 ">
-      <Link to="/">Home</Link>
-      <Link to="/login">Login</Link>
-      <Link to="/register">Register</Link>
+    <nav className="globalNav ">
+      <div className="globalWidth mx-auto flex">
+        <Link className="text-22px font-bold" to="/">
+          Home
+        </Link>
+        <div className="globalGap ml-auto flex items-center">
+          <Link className="underline-primary transition-all hover:underline" to="/login">
+            Login
+          </Link>
+          <Link
+            className="underline-primary transition-all hover:underline"
+            to="/register"
+          >
+            Register
+          </Link>
+        </div>
+      </div>
     </nav>
   )
 }
