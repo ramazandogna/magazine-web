@@ -42,7 +42,10 @@ function Profile() {
                 ? `${user.activateKey}`
                 : 'Aktif bir aktivasyon kodunuz yok'}
             </li>
-            <li>isAdmin: {user.admin ? 'Admin' : 'Kullanıcı'}</li>
+            <li>
+              isAdmin:
+              {user.admin ? 'Admin' : 'Kullanıcı'}
+            </li>
           </ul>
         </div>
       ) : (

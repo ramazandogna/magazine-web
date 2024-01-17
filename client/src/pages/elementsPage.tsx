@@ -30,24 +30,29 @@ const ElementsPage = () => {
       </div>
     )
   return (
-    <div className="globalSection gap-12px flex flex-wrap">
-      {contents &&
-        user &&
-        contents.map((content: sendData, i: number) => (
-          <div
-            className="globalPadding globalRounded w-100% text-bkg bg-secondary"
-            key={i}
-          >
-            <Link className="" to={`/content/${content._id}`}>
-              <p className="top-10px right-10px absolute"> {i + 1}</p>
-              <img
-                src={content.image?.base64Image}
-                alt={content?.image?.file?.name}
-                className="w-250px mt-18px globalrounded h-auto transition-all hover:scale-125"
-              />
-            </Link>
-          </div>
-        ))}
+    <div className="globalSection ">
+      <h2 className="globalh2">Element Library:</h2>
+      <div className="gap-12px flex flex-wrap">
+        {contents &&
+          user &&
+          contents.map((content: sendData, i: number) => (
+            <div className="gap-12px flex flex-wrap">
+              <div
+                className="globalPadding animate-fade-in animate-duration-150 globalRounded text-bkg bg-secondary relative shadow-xl"
+                key={i}
+              >
+                <Link className="" to={`/content/${content._id}`}>
+                  <p className="top-10px right-10px absolute"> {i + 1}</p>
+                  <img
+                    src={content.image?.base64Image}
+                    alt={content?.image?.file?.name}
+                    className="w-250px mt-18px globalrounded duration-250 globalRounded h-auto transition-all hover:scale-105 hover:shadow-xl"
+                  />
+                </Link>
+              </div>
+            </div>
+          ))}
+      </div>
     </div>
   )
 }

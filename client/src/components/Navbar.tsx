@@ -30,7 +30,10 @@ function Navbar() {
   return (
     <nav className="globalNav ">
       <div className="globalWidth flex">
-        <Link className="text-22px font-bold" to="/">
+        <Link
+          className="text-22px text-primary hover:text-secondary font-bold transition-all duration-500"
+          to="/"
+        >
           Home
         </Link>
         {haveUser ? (
@@ -38,7 +41,7 @@ function Navbar() {
             <Link className="" to="/elements">
               Elements
             </Link>
-            <Link className="" to="/sendelement">
+            <Link className="text-primary globalBorder" to="/sendelement">
               Catch Your Element
             </Link>
             <Link className="" to="/profile">
@@ -47,7 +50,10 @@ function Navbar() {
             <Link className="" to="/admin">
               Admin
             </Link>
-            <div className="text-primary cursor-pointer underline" onClick={handleLogout}>
+            <div
+              className="text-primary  globalBorder cursor-pointer"
+              onClick={handleLogout}
+            >
               Logout
             </div>
           </div>
