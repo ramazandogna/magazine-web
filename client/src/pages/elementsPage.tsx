@@ -22,7 +22,6 @@ const ElementsPage = () => {
     }
   }, [contents, setContents])
 
-  console.log(contents)
   if (!contents)
     return (
       <div className="fixedCenter text-16px flex items-center justify-center">

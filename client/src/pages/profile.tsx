@@ -25,7 +25,6 @@ function Profile() {
     }
   }, [user, navigate])
 
-  console.log(user)
   return (
     <div className="globalSection ">
       {user ? (
