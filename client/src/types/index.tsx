@@ -65,11 +65,23 @@ export interface ContentContextProps {
   setContents: React.Dispatch<React.SetStateAction<sendData[] | null>>
 }
 
-// // getContent
-// export interface GetContentProps {
-//   HTML: string
-//   CSS: string
-//   image: string
-//   author?: string
-//   contentTime?: Date
-// }
+//extension data
+interface ElementInfo {
+  class: string
+  id: string
+  elementTag: string
+  styles: {
+    [key: string]: string
+  }
+}
+
+interface ClickedElementData {
+  outerHTML: string
+  innerHTML: string
+}
+
+export interface DataObject {
+  clickedElement: ClickedElementData
+  elementInfos: ElementInfo[]
+  status: string
+}

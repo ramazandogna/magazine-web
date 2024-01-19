@@ -32,18 +32,22 @@ const getElementsData = async (req, res) => {
    }
 };
 
-const deleteElementsData = async () => {
+const deleteElementsData = async (req, res) => {
    try {
       const { contentId } = req.params;
+      const deletedData = await ElementData.findByIdAndDelete(contentId);
 
-      await ElementData.findByIdAndDelete(contentId);
+      if (!deletedData) {
+         return res.status(404).json({ error: 'Content not found' });
+      }
 
       res.json({
-         message: 'Elements deleted successfully',
+         message: 'Content deleted successfully',
+         deletedData,
       });
    } catch (error) {
       console.log(error);
-      res.status(500).json({ error: 'internal server error' });
+      res.status(500).json({ error: 'Internal server error' });
    }
 };
 

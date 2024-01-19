@@ -10,7 +10,7 @@ import './assets/style.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
-    <div className="text-text bg-bkg  text-14px fixed inset-0 font-[Space_Mono]">
+    <div className="text-text bg-bkg text-14px fixed inset-0 font-[Space_Mono] tracking-tight">
       <App />
     </div>
   </BrowserRouter>

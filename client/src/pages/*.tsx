@@ -1,6 +1,6 @@
 const PageNotFound = () => {
   return (
-    <div className="text-center my-5 bg-red-400 p-8px  text-white">
+    <div className="p-8px my-5 bg-red-400 text-center  text-white">
       404 <br /> hatası
     </div>
   )
