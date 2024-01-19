@@ -3,9 +3,9 @@ import { useContext, useState, useEffect } from 'react'
 //router
 import { useParams, useNavigate } from 'react-router-dom'
 //context
-import { sendData } from '../types'
-import { ContentContext } from '../context/contentContext'
-import { UserContext } from '../context/userContext'
+import { sendData } from '../../types'
+import { ContentContext } from '../../context/contentContext'
+import { UserContext } from '../../context/userContext'
 
 import axios from 'axios'
 import { toast } from 'react-hot-toast'
@@ -74,6 +74,28 @@ function ElementDetails() {
     setUpdatedCss(selectedContent?.css || '')
   }
 
+  const handleDelete = async () => {
+    try {
+      const response = await axios.delete(`/data/deleteelement/${contentId}`)
+
+      if (response.data.deletedData) {
+        setContents(prevContents => {
+          if (!prevContents) {
+            return null
+          }
+          return prevContents.filter(content => content._id !== contentId)
+        })
+        toast.success('Content deleted successfully')
+        navigate('/elements') // or redirect to another page after deletion
+      } else {
+        toast.error('Error deleting content')
+      }
+    } catch (error) {
+      console.error(error)
+      toast.error('Error deleting content')
+    }
+  }
+
   if (!selectedContent) return <div>Loading...</div>
 
   return (
@@ -117,7 +139,9 @@ function ElementDetails() {
           ) : (
             <button onClick={handleEdit}>Düzenle</button>
           )}
-          <button className="">Delete</button>
+          <button onClick={handleDelete} className="">
+            Delete
+          </button>
         </div>
       )}
     </div>

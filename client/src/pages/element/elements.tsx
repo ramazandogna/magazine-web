@@ -2,12 +2,12 @@
 import { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 //contet
-import { ContentContext } from '../context/contentContext'
-import { UserContext } from '../context/userContext'
+import { ContentContext } from '../../context/contentContext'
+import { UserContext } from '../../context/userContext'
 //axios
 import axios from 'axios'
 //types
-import { sendData } from '../types'
+import { sendData } from '../../types'
 
 const ElementsPage = () => {
   const { contents, setContents } = useContext(ContentContext)
@@ -35,11 +35,8 @@ const ElementsPage = () => {
         {contents &&
           user &&
           contents.map((content: sendData, i: number) => (
-            <div className="gap-12px flex flex-wrap">
-              <div
-                className="globalPadding animate-fade-in animate-duration-150 globalRounded text-bkg bg-secondary relative shadow-xl"
-                key={i}
-              >
+            <div key={i} className="gap-12px flex flex-wrap">
+              <div className="globalPadding animate-fade-in animate-duration-150 globalRounded text-bkg bg-secondary relative shadow-xl">
                 <Link className="" to={`/content/${content._id}`}>
                   <p className="top-10px right-10px absolute"> {i + 1}</p>
                   <img

@@ -1,7 +1,13 @@
+import FAQ from './Home/FAQ'
+import About from './Home/about'
+import Introducions from './Home/introducions'
+
 function Home() {
   return (
     <div className="globalSection w-100vw">
-      <h2>Home</h2>
+      <About />
+      <Introducions />
+      <FAQ />
     </div>
   )
 }

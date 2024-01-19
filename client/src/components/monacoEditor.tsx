@@ -13,7 +13,7 @@ function Monaco({
       defaultLanguage={defaultLanguage}
       defaultValue={defaultValue}
       height="40vw"
-      width="100%"
+      width="50%"
       theme={theme}
     />
   )
