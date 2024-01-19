@@ -1,10 +1,12 @@
-import { useEffect } from 'react'
-import SubmitElements from '../components/submitElements'
+// import SubmitElements from '../components/submitElements'
+
+import CatchAndSend from '../components/catchAndSend'
 
 function SendElementPage() {
   return (
     <div className="globalSection">
-      <SubmitElements />
+      {/* <SubmitElements /> */}
+      <CatchAndSend />
     </div>
   )
 }
