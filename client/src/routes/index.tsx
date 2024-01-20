@@ -10,6 +10,7 @@ import { UserContextProvider } from '../context/userContext'
 import { ContentContextProvider } from '../context/contentContext'
 //pages
 import Home from '../pages/home'
+import About from '../pages/Home/about'
 import Login from '../pages/auth/login'
 import Register from '../pages/auth/register'
 import Profile from '../pages/profile'
@@ -30,6 +31,7 @@ const AppRoutes = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
           <Route path="/content/:contentId" element={<ElementDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

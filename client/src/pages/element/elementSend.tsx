@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import Monaco from '../../components/monacoEditor'
 import { DataObject } from '../../types'
+// import SubmitElements from '../../components/elementSubmit'
 
 function ElementSend() {
   const [data, setData] = useState<DataObject>()
@@ -62,6 +63,7 @@ function ElementSend() {
           : 'There is no any element in data'}
       </p>
     </div>
+    // <SubmitElements/>
   )
 }
 

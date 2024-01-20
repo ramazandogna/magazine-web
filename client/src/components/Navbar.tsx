@@ -28,14 +28,15 @@ function Navbar() {
   }, [user])
 
   return (
-    <nav className="globalNav ">
-      <div className="globalWidth flex">
+    <nav className="globalNav text-15px text-secondary ">
+      <div className="globalWidth flex items-center">
         <Link
-          className="text-22px text-primary hover:text-secondary font-bold transition-all duration-500"
+          className="text-22px rounded-6px text-bkg gradient-background p-8px font-bold transition-all duration-500"
           to="/"
         >
           Home
         </Link>
+
         {haveUser ? (
           <div className="globalGap ml-auto hidden items-center sm:flex">
             <Link className="" to="/elements">
@@ -46,6 +47,12 @@ function Navbar() {
             </Link>
             <Link className="" to="/profile">
               Profile
+            </Link>
+            <Link
+              className="underline-primary transition-all hover:underline"
+              to="/about"
+            >
+              About
             </Link>
             <Link className="" to="/admin">
               Admin
@@ -59,6 +66,12 @@ function Navbar() {
           </div>
         ) : (
           <div className="globalGap ml-auto hidden items-center sm:flex">
+            <Link
+              className="underline-primary transition-all hover:underline"
+              to="/about"
+            >
+              About
+            </Link>
             <Link
               className="underline-primary transition-all hover:underline"
               to="/login"

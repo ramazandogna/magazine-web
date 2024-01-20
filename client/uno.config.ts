@@ -1,4 +1,4 @@
-import { defineConfig, presetUno } from 'unocss'
+import { defineConfig, presetIcons, presetUno } from 'unocss'
 import { presetWebFonts } from 'unocss'
 
 export default defineConfig({
@@ -13,19 +13,23 @@ export default defineConfig({
   shortcuts: [
     {
       secondary: 'rounded-6px p-16px  bg-secondary',
+      globalGradient:
+        '[background:linear-gradient(to_right,_#2B2A4C,_#EEE2DE,_#B31312,_#EA906C)]',
       fixedCenter: 'fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 inset-0',
       headerHeight: 'h-3rem',
       globalNav:
         'z-9999 w-100vw headerHeight py-0.25rem backdrop-blur-xl fixed left-0 top-0  flex items-center shadow-md',
-      globalSection: 'mt-[5.5rem] globalWidth box-border',
+      globalSection: 'mt-[4.5rem] globalWidth',
       globalWidth:
-        '2xl:w-1380px xl:w-1200px lg:w-960px w-100% relative m-auto px-1rem 2xl:px-0',
+        '2xl:w-1380px xl:w-1200px lg:w-960px w-100% box-border m-auto px-1rem 2xl:px-0',
       globalPadding: 'p-12px',
       globalRounded: 'rounded-8px',
       globalGap: 'gap-16px',
       globalh2: 'text-24px font-bold mt-20px mb-12px',
       border: '[border-bottom:1px_solid_black] ',
-      globalBorder: 'hover:border-primary transition-all hover:border hover:border-b-2'
+      globalBorder: 'hover:border-text transition-all hover:border hover:border-b-2',
+      globalButton:
+        'border-none  text-16px globalRounded bg-primary text-bkg hover:bg-secondary transition-all duration-300 cursor-pointer py-14px px-24px'
     }
   ],
   presets: [
@@ -45,6 +49,7 @@ export default defineConfig({
           }
         ]
       }
-    })
+    }),
+    presetIcons()
   ]
 })
