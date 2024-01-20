@@ -9,12 +9,13 @@ import { UserContext } from '../../context/userContext'
 
 import axios from 'axios'
 import { toast } from 'react-hot-toast'
+import Monaco from '../../components/monacoEditor'
 
 function ElementDetails() {
   const [contentIsYours, setContentIsYours] = useState(false)
   const [updatedHtml, setUpdatedHtml] = useState('')
   const [updatedCss, setUpdatedCss] = useState('')
-  const [isEditable, setIsEditable] = useState(false)
+
   const { contentId } = useParams()
   const { contents, setContents } = useContext(ContentContext)
   const { user } = useContext(UserContext)
@@ -63,17 +64,6 @@ function ElementDetails() {
     }
   }
 
-  const handleEdit = () => {
-    setIsEditable(true)
-  }
-
-  const handleCancel = () => {
-    setIsEditable(false)
-    // Restore initial values when canceling the edit
-    setUpdatedHtml(selectedContent?.html || '')
-    setUpdatedCss(selectedContent?.css || '')
-  }
-
   const handleDelete = async () => {
     try {
       const response = await axios.delete(`/data/deleteelement/${contentId}`)
@@ -99,51 +89,60 @@ function ElementDetails() {
   if (!selectedContent) return <div>Loading...</div>
 
   return (
-    <div className="globalSection">
-      <img
-        src={selectedContent?.image?.base64Image}
-        alt={selectedContent?.image?.file?.name}
-        className="max-w-250px h-auto"
-      />
-      <h2>{selectedContent?.user.name}</h2>
-      <p>{selectedContent?.user.email}</p>
-      <p>{selectedContent?.user.id}</p>
-      <div className="flex">
-        <label>
-          HTML:
-          {isEditable ? (
-            <textarea
-              value={updatedHtml}
-              onChange={e => setUpdatedHtml(e.target.value)}
-            />
-          ) : (
-            <div>{selectedContent?.html}</div>
+    <div className="globalSection  h-100vh">
+      <div className="gap-16px h-30vh flex flex-col md:flex-row ">
+        <div className="bg-secondary/30 globalPadding flex flex-1 items-center justify-center">
+          <img
+            src={selectedContent?.image?.base64Image}
+            alt={selectedContent?.image?.file?.name}
+            className="h-25vh"
+          />
+        </div>
+        <div className="globalPadding bg-secondary/30 relative ml-auto flex-1">
+          <h2>Elementi yakalayan kişinin bilgileri</h2>
+          <p>{selectedContent?.user.name}</p>
+          <p>{selectedContent?.user.email}</p>
+          <p>{selectedContent?.user.id}</p>
+          {contentIsYours && (
+            <div className="gap-16px absolute bottom-2 left-1/2 flex  -translate-x-1/2 items-center">
+              <div
+                className="globalButton text-14px bg-green-800 hover:bg-green-600"
+                onClick={handleUpdate}
+              >
+                Kaydet
+              </div>
+              <button className="globalButton text-14px" onClick={handleDelete}>
+                Delete
+              </button>
+            </div>
           )}
+        </div>
+      </div>
+
+      <div className="flex justify-between">
+        <label className="flex flex-1 flex-col items-center justify-end text-center">
+          <h2 className="globalh2 my-12px">HTML:</h2>
+          <Monaco
+            defaultLanguage="html"
+            defaultValue={selectedContent?.html || ''}
+            theme="vs-dark"
+            onChange={value => setUpdatedHtml(value || '')}
+            width={'50vh'}
+            height={'44vh'}
+          />
         </label>
-        <label>
-          CSS:
-          {isEditable ? (
-            <textarea value={updatedCss} onChange={e => setUpdatedCss(e.target.value)} />
-          ) : (
-            <div>{selectedContent?.css}</div>
-          )}
+        <label className="flex flex-1 flex-col items-center justify-end text-center">
+          <h2 className="globalh2">CSS:</h2>
+          <Monaco
+            defaultLanguage="css"
+            defaultValue={selectedContent?.css || ''}
+            theme="vs-dark"
+            onChange={value => setUpdatedCss(value || '')}
+            width={'50vh'}
+            height={'44vh'}
+          />
         </label>
       </div>
-      {contentIsYours && (
-        <div>
-          {isEditable ? (
-            <>
-              <button onClick={handleUpdate}>Kaydet</button>
-              <button onClick={handleCancel}>İptal Et</button>
-            </>
-          ) : (
-            <button onClick={handleEdit}>Düzenle</button>
-          )}
-          <button onClick={handleDelete} className="">
-            Delete
-          </button>
-        </div>
-      )}
     </div>
   )
 }
