@@ -34,7 +34,7 @@ function Navbar() {
           className="text-22px rounded-6px text-bkg gradient-background p-8px font-bold transition-all duration-500"
           to="/"
         >
-          Home
+          Element Y.
         </Link>
 
         {haveUser ? (

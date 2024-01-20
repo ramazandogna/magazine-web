@@ -27,7 +27,7 @@ const ElementsPage = () => {
         console.error('Error fetching contents:', error)
         setLoading(false)
       })
-  }, [])
+  })
 
   if (loading) {
     return (
