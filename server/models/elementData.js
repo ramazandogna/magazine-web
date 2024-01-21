@@ -5,20 +5,7 @@ const elementDataSchema = new Schema(
    {
       html: String,
       css: String,
-      image: {
-         file: {
-            type: Object,
-            required: true,
-         },
-         base64Image: {
-            type: String,
-            required: true,
-         },
-         name: {
-            type: String,
-            required: true,
-         },
-      },
+      image: String,
       user: {
          name: {
             type: String,
