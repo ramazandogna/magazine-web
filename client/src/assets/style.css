@@ -9,3 +9,26 @@ a {
   color: var(--primary);
   text-decoration: none;
 }
+
+.gradient-background {
+  background: linear-gradient(45deg, #b31312, #ea906c, #2b2a4c, #eee2de);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+}
+.gradient-background-2 {
+  background: linear-gradient(45deg, #b3131280, #ea906c80, #2b2a4c80, #eee2de80);
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

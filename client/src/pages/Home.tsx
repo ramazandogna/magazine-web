@@ -1,13 +1,13 @@
-import FAQ from './Home/FAQ'
-import About from './Home/about'
-import Introducions from './Home/introducions'
+import Introducions from '../pages/Home/introducions'
 
 function Home() {
   return (
-    <div className="globalSection w-100vw">
-      <About />
-      <Introducions />
-      <FAQ />
+    <div className="globalSection relative h-full">
+      <div className="relative">
+        <div className="gradient-background z-999 fixed inset-0">
+          <Introducions />
+        </div>
+      </div>
     </div>
   )
 }

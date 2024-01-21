@@ -7,7 +7,7 @@ const Admin = () => {
 
   if (!user || !user.admin) {
     return (
-      <div className="globalSection">
+      <div className="globalSection h-100vh ">
         <span className="border-primary border-b-2">
           {user?.admin ? 'Admin' : 'Kullanıcı'}
         </span>
