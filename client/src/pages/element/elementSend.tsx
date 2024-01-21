@@ -1,18 +1,17 @@
-import { ChangeEvent, ChangeEventHandler, useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Monaco from '../../components/monacoEditor'
-import { DataObject, imageDataProps, sendData } from '../../types'
+import { DataObject, sendData } from '../../types'
 import { toast } from 'react-hot-toast'
 import axios from 'axios'
 import { UserContext } from '../../context/userContext'
 import { useNavigate } from 'react-router-dom'
-// import SubmitElements from '../../components/elementSubmit'
 
 function ElementSend() {
   const navigate = useNavigate()
   const { user } = useContext(UserContext)
-  const [showElement, setShowElement] = useState(false)
   const [isUser, setIsUser] = useState(false)
   const [dataExtension, setDataExtension] = useState<DataObject | undefined>()
+  const [customEv, setCustomEv] = useState<string | undefined>()
   const [data, setData] = useState<sendData>({
     _id: null,
     map: () => null,
@@ -25,11 +24,17 @@ function ElementSend() {
       id: 0
     }
   })
-  const [imageData, setImageData] = useState<imageDataProps>({
-    file: null,
-    base64Image: '',
-    name: ''
-  })
+  useEffect(() => {
+    if (dataExtension) {
+      setData(prevData => ({
+        ...prevData,
+        html: dataExtension.clickedElement.outerHTML || '',
+        css: dataExtension.elementInfos || '',
+        image: dataExtension.clickedElement.screenshots || ''
+      }))
+    }
+  }, [dataExtension])
+
   useEffect(() => {
     // Event dinleme fonksiyonu
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -38,6 +43,8 @@ function ElementSend() {
       if (event.detail) {
         console.log('Custom event received:', event.detail)
         setDataExtension(event.detail)
+        setCustomEv(event.currentTarget.location.href)
+        console.log('href:', customEv)
         // İşlemlerinizi burada gerçekleştirin
       }
     }
@@ -50,15 +57,7 @@ function ElementSend() {
       // Component kaldırıldığında event dinleme işlemini kaldır
       window.removeEventListener('send-element-to-dom', handleCustomEvent)
     }
-  }, [])
-  console.log(data)
-
-  const isImageFileValid = (file: File): boolean => {
-    const allowedExtensions = ['jpg', 'jpeg', 'png']
-    const fileNameParts = file.name.split('.')
-    const fileExtension = fileNameParts[fileNameParts.length - 1].toLowerCase()
-    return allowedExtensions.includes(fileExtension)
-  }
+  }, [customEv, dataExtension])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -69,13 +68,14 @@ function ElementSend() {
         const { data } = await axios.post('/data/submitelement', {
           html,
           css,
-          image: imageData,
+          image: dataExtension?.clickedElement.screenshots,
           user: {
             id: user.id,
             email: user.email,
             name: user.name
           }
         })
+        console.log(data) // Sunucudan gelen yanıtı kontrol et
 
         if (data.error) {
           toast.error(data.error)
@@ -101,39 +101,6 @@ function ElementSend() {
     }
   }
 
-  const handleImageSend: ChangeEventHandler<HTMLInputElement> = (
-    e: ChangeEvent<HTMLInputElement>
-  ) => {
-    const file = e.target?.files
-    if (file && file.length > 0) {
-      const selectedFile = file[0]
-      const fileName = file[0].name
-
-      if (isImageFileValid(selectedFile)) {
-        const reader = new FileReader()
-
-        reader.onloadend = () => {
-          const base64Image = reader.result as string
-
-          setImageData({
-            file: selectedFile,
-            base64Image,
-            name: fileName
-          })
-          setData(prevData => ({
-            ...prevData,
-            image: { file: selectedFile, base64Image, name: fileName }
-          }))
-        }
-
-        reader.readAsDataURL(selectedFile)
-      } else {
-        alert('Please select a valid (JPG, JPEG, PNG) image file')
-        setData(prevData => ({ ...prevData, image: null }))
-        e.target.value = ''
-      }
-    }
-  }
   const handleButtonClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     try {
       await handleSubmit(e as unknown as React.FormEvent<HTMLFormElement>)
@@ -160,57 +127,56 @@ function ElementSend() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
 
-  return (
-    <div className="globalSection h-100vh ">
-      Element Yakalayıcı
-      {data && showElement && (
-        <>
-          <div className=" gap-16px mt-16px">
-            <label className="mb-2 block text-gray-800">Resim Seç</label>
+  console.log(isUser)
+  console.log(data)
 
-            <input
-              disabled={!isUser}
-              accept="image/"
-              type="file"
-              onChange={handleImageSend}
-              className="w-full rounded p-2"
+  return (
+    <div className="globalSection  bg-secondary/40  h-100vh gap-16px ">
+      <p className="my-4px">
+        Eklenti penceresini açarak Element Yakalayıcı uygulamasının nasıl kullanıldığını
+        öğrenebilirsin.!!
+      </p>
+
+      <div className="bg-secondary/40 p-32px mb-16px h-200px max-h-200px w-90% mx-auto ">
+        <div className="bg-bkg h-100% w-80% m-auto flex items-center justify-center overflow-hidden">
+          <img
+            className="globalRounded w-full object-contain"
+            src={dataExtension?.clickedElement.screenshots}
+            alt={customEv}
+          />
+        </div>
+      </div>
+
+      {dataExtension?.clickedElement.outerHTML && dataExtension?.elementInfos && (
+        <div key={data.html + data.css} className="flex w-full flex-col justify-between">
+          <div className="flex w-full justify-between">
+            <Monaco
+              defaultLanguage="html"
+              defaultValue={data.html || ''}
+              theme="light"
+              height="40vh"
+              width="35vw"
+              onChange={value =>
+                setData(prevData => ({ ...prevData, html: value || '' }))
+              }
             />
-            <div className="flex justify-between">
-              <Monaco
-                defaultLanguage="html"
-                defaultValue={dataExtension?.clickedElement.outerHTML || ''}
-                theme="light"
-                height="40vh"
-                width="44vw"
-                onChange={value =>
-                  setData(prevData => ({ ...prevData, html: value || '' }))
-                }
-              />
-              <Monaco
-                defaultLanguage="css"
-                defaultValue={'data?.elementInfos'}
-                theme="vs-dark"
-                height="40vh"
-                width="44vw"
-                onChange={value =>
-                  setData(prevData => ({ ...prevData, css: value || '' }))
-                }
-              />
-            </div>
+            <Monaco
+              defaultLanguage="css"
+              defaultValue={data.css || ''}
+              theme="vs-dark"
+              height="40vh"
+              width="35vw"
+              onChange={value => setData(prevData => ({ ...prevData, css: value || '' }))}
+            />
+          </div>
+          <div className="mt-10px flex justify-center">
             <button className="globalButton" onClick={handleButtonClick}>
-              VT'na Kaydet
+              Kaydet
             </button>
           </div>
-        </>
+        </div>
       )}
-      <button
-        className={` ${showElement ? 'hidden' : 'mt-16px ml-16px'}`}
-        onMouseEnter={() => {
-          setShowElement(true)
-        }}
-      >
-        Kodu Göster
-      </button>
+
       <p
         className={` ${dataExtension?.status ? '-translate-x-50% text-18px fixed bottom-0 left-1/2 text-green-800' : '-translate-x-50% text-18px text-primary fixed bottom-0 left-1/2 '}`}
       >

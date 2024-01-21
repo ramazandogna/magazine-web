@@ -29,7 +29,7 @@ export default defineConfig({
       border: '[border-bottom:1px_solid_black] ',
       globalBorder: 'hover:border-text transition-all hover:border hover:border-b-2',
       globalButton:
-        'border-none  text-16px globalRounded bg-primary text-bkg hover:bg-secondary transition-all duration-300 cursor-pointer py-14px px-24px'
+        'border-none  text-16px globalRounded bg-primary text-bkg hover:bg-secondary transition-all duration-300 cursor-pointer py-10px text-14px px-24px'
     }
   ],
   presets: [

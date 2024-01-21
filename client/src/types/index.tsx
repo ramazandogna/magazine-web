@@ -28,11 +28,7 @@ export type sendData = {
   map(
     arg0: (content: sendData, i: number) => import('react/jsx-runtime').JSX.Element
   ): import('react').ReactNode
-  image: {
-    file: File | null
-    base64Image: string
-    name: string
-  } | null
+  image: string | null
   html: string
   css: string
   user: {
@@ -48,12 +44,6 @@ export type userDataProps = {
   id: number
 }
 
-export type imageDataProps = {
-  file: File | null
-  base64Image: string
-  name: string
-}
-
 //context props
 //getUser
 export interface UserContextProps {
@@ -66,7 +56,7 @@ export interface ContentContextProps {
 }
 
 //extension data
-interface ElementInfo {
+export interface ElementInfo {
   class: string
   id: string
   elementTag: string
@@ -78,10 +68,11 @@ interface ElementInfo {
 interface ClickedElementData {
   outerHTML: string
   innerHTML: string
+  screenshots: string
 }
 
 export interface DataObject {
   clickedElement: ClickedElementData
-  elementInfos: ElementInfo[]
+  elementInfos: string
   status: string
 }

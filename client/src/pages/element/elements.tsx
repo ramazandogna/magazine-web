@@ -43,16 +43,21 @@ const ElementsPage = () => {
         {contents &&
           user &&
           contents.map((content: sendData, i: number) => (
-            <div className="animate-fade-in duration-250 hover:shadow-text animate-duration-250 h-200px globalRounded text-bkg  bg-red   relative flex w-1/4 grow items-center justify-center shadow-xl hover:scale-110 hover:shadow-2xl">
-              <Link key={i} to={`/content/${content._id}`}>
+            <div
+              key={i}
+              className="animate-fade-in duration-250 hover:shadow-text animate-duration-250 h-200px max-h-200px globalRounded text-bkg  bg-red   relative flex w-1/4 grow items-center justify-center shadow-xl hover:scale-110 hover:shadow-2xl"
+            >
+              <Link to={`/content/${content._id}`}>
                 <p className="bg-text py-4px px-8px globalRounded top-10px left-10px absolute">
                   {i + 1}
                 </p>
-                <img
-                  src={content.image?.base64Image}
-                  alt={content?.image?.file?.name}
-                  className="w-100% h-200px globalRounded flex w-full items-center object-cover "
-                />
+                <div className="  h-auto overflow-hidden">
+                  <img
+                    src={content.image ?? ''}
+                    alt={content?.image ?? ''}
+                    className="w-100% h-100% globalRounded flex w-full items-center object-cover "
+                  />
+                </div>
               </Link>
             </div>
           ))}

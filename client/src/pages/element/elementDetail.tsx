@@ -93,9 +93,9 @@ function ElementDetails() {
       <div className="gap-16px h-30vh flex flex-col md:flex-row ">
         <div className="bg-secondary/30 globalPadding flex flex-1 items-center justify-center">
           <img
-            src={selectedContent?.image?.base64Image}
-            alt={selectedContent?.image?.file?.name}
-            className="h-25vh"
+            src={selectedContent?.image ?? ''}
+            alt={selectedContent?.image ?? ''}
+            className="max-w-450px"
           />
         </div>
         <div className="globalPadding bg-secondary/30 relative ml-auto flex-1">
