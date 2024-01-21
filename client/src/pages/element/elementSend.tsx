@@ -132,11 +132,6 @@ function ElementSend() {
 
   return (
     <div className="globalSection  bg-secondary/40  h-100vh gap-16px ">
-      <p className="my-4px">
-        Eklenti penceresini açarak Element Yakalayıcı uygulamasının nasıl kullanıldığını
-        öğrenebilirsin.!!
-      </p>
-
       <div className="bg-secondary/40 p-32px mb-16px h-200px max-h-200px w-90% mx-auto ">
         <div className="bg-bkg h-100% w-80% m-auto flex items-center justify-center overflow-hidden">
           <img
@@ -146,6 +141,13 @@ function ElementSend() {
           />
         </div>
       </div>
+
+      {!dataExtension && (
+        <p className="my-4px">
+          Eklenti penceresini açarak Element Yakalayıcı uygulamasının nasıl kullanıldığını
+          öğrenebilirsin.!!
+        </p>
+      )}
 
       {dataExtension?.clickedElement.outerHTML && dataExtension?.elementInfos && (
         <div key={data.html + data.css} className="flex w-full flex-col justify-between">
