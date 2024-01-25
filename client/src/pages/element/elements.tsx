@@ -38,24 +38,24 @@ const ElementsPage = () => {
   }
   return (
     <div className="globalSection min-h-100vh ">
-      <h2 className="globalh2 mt-40px mb-32px">Element Library:</h2>
+      <h2 className="globalh2 mt-40px mb-32px">Elementler Galerisi:</h2>
       <div className="gap-16px flex h-full w-full flex-wrap">
         {contents &&
           user &&
           contents.map((content: sendData, i: number) => (
             <div
               key={i}
-              className="animate-fade-in duration-250 hover:shadow-text animate-duration-250 h-200px max-h-200px globalRounded text-bkg  bg-red   relative flex w-1/4 grow items-center justify-center shadow-xl hover:scale-110 hover:shadow-2xl"
+              className="animate-fade-in duration-250 hover:shadow-text animate-duration-250 h-300px max-h-300px globalRounded text-bkg bg-red relative flex w-1/3 grow items-center justify-center overflow-hidden shadow-xl hover:shadow-2xl"
             >
-              <Link to={`/content/${content._id}`}>
+              <Link to={`/content/${content._id}`} className="h-full w-full">
                 <p className="bg-text py-4px px-8px globalRounded top-10px left-10px absolute">
                   {i + 1}
                 </p>
-                <div className="  h-auto overflow-hidden">
+                <div className="h-full w-full">
                   <img
                     src={content.image ?? ''}
                     alt={content?.image ?? ''}
-                    className="w-100% h-100% globalRounded flex w-full items-center object-cover "
+                    className="duration-250 hover:rotate-5 globalRounded flex h-full w-full object-contain hover:scale-125"
                   />
                 </div>
               </Link>

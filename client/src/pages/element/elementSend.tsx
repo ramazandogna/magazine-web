@@ -132,10 +132,10 @@ function ElementSend() {
 
   return (
     <div className="globalSection  bg-secondary/40  h-100vh gap-16px ">
-      <div className="bg-secondary/40 p-32px mb-16px h-200px max-h-200px w-90% mx-auto ">
-        <div className="bg-bkg h-100% w-80% m-auto flex items-center justify-center overflow-hidden">
+      <div className="bg-secondary/40 p-32px mb-16px h-200px max-h-200px w-90% mx-auto">
+        <div className="bg-bkg m-auto flex h-full w-full items-center justify-center overflow-hidden">
           <img
-            className="globalRounded w-full object-contain"
+            className="globalRounded h-full w-full object-contain"
             src={dataExtension?.clickedElement.screenshots}
             alt={customEv}
           />

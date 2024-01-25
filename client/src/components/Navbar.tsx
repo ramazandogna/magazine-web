@@ -28,7 +28,7 @@ function Navbar() {
   }, [user])
 
   return (
-    <nav className="globalNav text-15px text-secondary ">
+    <nav className="globalNav text-15px text-text ">
       <div className="globalWidth flex items-center">
         <Link
           className="text-22px rounded-6px text-bkg gradient-background p-8px font-bold transition-all duration-500"
@@ -40,28 +40,28 @@ function Navbar() {
         {haveUser ? (
           <div className="globalGap ml-auto hidden items-center sm:flex">
             <Link className="" to="/elements">
-              Elements
+              Galeri
             </Link>
             <Link className="text-primary globalBorder" to="/sendelement">
-              Catch Your Element
+              Elementini Yakala
             </Link>
             <Link className="" to="/profile">
-              Profile
+              Profil
             </Link>
             <Link
               className="underline-primary transition-all hover:underline"
               to="/about"
             >
-              About
+              Hakkında
             </Link>
-            <Link className="" to="/admin">
-              Admin
-            </Link>
+            {/* <Link className="" to="/admin">
+              Yönetici
+            </Link> */}
             <div
               className="text-primary  globalBorder cursor-pointer"
               onClick={handleLogout}
             >
-              Logout
+              Çıkış Yap
             </div>
           </div>
         ) : (
@@ -70,19 +70,19 @@ function Navbar() {
               className="underline-primary transition-all hover:underline"
               to="/about"
             >
-              About
+              Hakkında
             </Link>
             <Link
               className="underline-primary transition-all hover:underline"
               to="/login"
             >
-              Login
+              Giriş Yap
             </Link>
             <Link
               className="underline-primary transition-all hover:underline"
               to="/register"
             >
-              Register
+              Kayıt Ol
             </Link>
           </div>
         )}
