@@ -151,7 +151,7 @@ function ElementSend() {
 
       {dataExtension?.clickedElement.outerHTML && dataExtension?.elementInfos && (
         <div key={data.html + data.css} className="flex w-full flex-col justify-between">
-          <div className="flex w-full justify-between">
+          <div className="flex justify-evenly">
             <Monaco
               defaultLanguage="html"
               defaultValue={data.html || ''}
@@ -171,8 +171,8 @@ function ElementSend() {
               onChange={value => setData(prevData => ({ ...prevData, css: value || '' }))}
             />
           </div>
-          <div className="mt-10px flex justify-center">
-            <button className="globalButton" onClick={handleButtonClick}>
+          <div className="mt-20px flex justify-center">
+            <button className="globalButton w-150px h-50p" onClick={handleButtonClick}>
               Kaydet
             </button>
           </div>

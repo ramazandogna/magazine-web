@@ -91,7 +91,7 @@ function ElementDetails() {
   return (
     <div className="globalSection  h-100vh">
       <div className="gap-16px h-30vh flex flex-col md:flex-row ">
-        <div className="bg-secondary/30 max-w-450px globalPadding max-h-400px flex flex-1 items-center justify-center">
+        <div className="bg-secondary/30 max-w-550px globalPadding max-h-400px flex flex-1 items-center justify-center">
           <img
             src={selectedContent?.image ?? ''}
             alt={selectedContent?.image ?? ''}
