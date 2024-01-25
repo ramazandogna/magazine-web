@@ -1,41 +1,40 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 export default function FAQ() {
   const data = [
     {
-      question: 'Birinci Soru?',
-      answer: 'Birinci Soru Cevabı'
+      question: 'Element Yakalayıcı Nedir?',
+      answer:
+        'Element Yakalayıcı, web sitelerindeki elementleri yakalayıp, kopyalamanızı sağlayan bir araçtır.'
     },
     {
-      question: 'İkinci Soru?',
-      answer: 'İkinci Soru Cevabı'
+      question: 'Element Yakalayıcı Kimlere Hitap Ediyor?',
+      answer: 'Element Yakalayıcının hedef kitlesi, web geliştirme ile uğraşan herkestir'
     },
     {
-      question: 'İkinci Soru?',
-      answer: 'İkinci Soru Cevabı'
+      question: 'Element Yakalayıcı Nasıl Kullanılır?',
+      answer:
+        'Element Yakalayıcıyı kullanmak için giriş yapmış olmanız gerekmektedir. Elementini yakala penceresini ziyaret ederek detaylara ulaşabilirsiniz.'
     },
     {
-      question: 'İkinci Soru?',
-      answer: 'İkinci Soru Cevabı'
+      question: 'Element Yakalayıcı Ücretsiz mi?',
+      answer: 'Şimdilik tamamen ücretsiz.'
     },
     {
-      question: 'İkinci Soru?',
-      answer: 'İkinci Soru Cevabı'
+      question: 'Element Yakalayıcı CSS Kütüphanelerini de Yakalayabiliyor mu?',
+      answer:
+        'Evet, yakalayabiliyor. Tarayıcılar yalnızca CSS, HTML ve JavaScript kodlarını görür. Bu nedenle CSS kütüpaneleri de aslında tarayıcıda CSS olarak tutulmaktadır. Haliyle Element Yakalayıcı da CSS kütüphanelerini yakalayabilmektedir.'
     },
     {
-      question: 'İkinci Soru?',
-      answer: 'İkinci Soru Cevabı'
-    },
-    {
-      question: 'İkinci Soru?',
-      answer: 'İkinci Soru Cevabı'
+      question: 'Neden Kullanayım?',
+      answer:
+        'Element Yakalayıcı, web geliştirme sürecinizi hızlandırmak için tasarlanmıştır.'
     }
-    // Diğer soru ve cevapları ekleyin
   ]
 
   const [isExpanded, setExpanded] = useState(Array(data.length).fill(false))
 
-  const handleToggle = index => {
+  const handleToggle = (index: number) => {
     const newIsExpanded = [...isExpanded]
     newIsExpanded[index] = !newIsExpanded[index]
     setExpanded(newIsExpanded)

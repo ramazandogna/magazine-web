@@ -42,22 +42,22 @@ function ElementDetails() {
         image: { base64Image: 'Updated Image', name: 'Updated Image Name' }
       })
 
-      if (updatedContent.data.updatedData) {
+      if (updatedContent.data) {
         setContents((prevContents: sendData[] | null) => {
           if (prevContents) {
             return prevContents.map((content: sendData) =>
-              content._id === contentId ? updatedContent.data.updatedData : content
+              content._id === contentId ? updatedContent.data : content
             )
           }
           return null
         })
+
         toast.success('Content updated successfully')
+        // Sayfa yeniden yüklenmeden önce 1500 ms (1.5 saniye) bekleyin
+        setTimeout(() => {
+          window.location.reload()
+        }, 1500)
       }
-
-      // Sayfa yeniden yönlendirmesi Promise içinde
-      await new Promise(resolve => setTimeout(resolve, 0))
-
-      navigate(`/content/${contentId}`)
     } catch (error) {
       console.error(error)
       toast.error('Error updating content')
@@ -91,11 +91,11 @@ function ElementDetails() {
   return (
     <div className="globalSection  h-100vh">
       <div className="gap-16px h-30vh flex flex-col md:flex-row ">
-        <div className="bg-secondary/30 globalPadding flex flex-1 items-center justify-center">
+        <div className="bg-secondary/30 max-w-450px globalPadding max-h-400px flex flex-1 items-center justify-center">
           <img
             src={selectedContent?.image ?? ''}
             alt={selectedContent?.image ?? ''}
-            className="max-w-450px"
+            className="w-100% h-100% object-contain"
           />
         </div>
         <div className="globalPadding bg-secondary/30 relative ml-auto flex-1">
